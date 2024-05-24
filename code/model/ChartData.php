@@ -22,12 +22,12 @@ class ChartData extends DataObject
         'Dataset' => 'ChartDataset',
     ];
 
-    public static $summary_fields = [
+    private static $summary_fields = [
         'Label',
         'Value',
     ];
 
-    public static $default_sort = 'SortOrder';
+    private static $default_sort = 'SortOrder';
 
     public function getCMSFields()
     {

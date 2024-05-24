@@ -41,7 +41,7 @@ class Chart extends DataObject
         'pie' => 'Pie Chart',
     ];
 
-    public static $default_sort = 'SortOrder';
+    private static $default_sort = 'SortOrder';
 
     public function getCMSFields()
     {

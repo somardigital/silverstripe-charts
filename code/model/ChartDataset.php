@@ -35,11 +35,11 @@ class ChartDataset extends DataObject
      */
     private static $background_color = '2196f3';
 
-    public static $summary_fields = [
+    private static $summary_fields = [
         'Label',
     ];
 
-    public static $default_sort = 'SortOrder';
+    private static $default_sort = 'SortOrder';
 
     public function getCMSFields()
     {
