@@ -1,5 +1,9 @@
 <?php
 
+use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataObject;
+use TractorCow\Colorpicker\Forms\ColorField;
+
 /**
  * @package SilverStripeCharts
  *
