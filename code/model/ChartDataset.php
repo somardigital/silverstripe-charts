@@ -73,13 +73,6 @@ class ChartDataset extends DataObject
                 $config
             );
 
-            $loader = $importer->getLoader($gridField);
-
-            $loader->mappableFields = [
-                'Label' => 'Label',
-                'Value' => 'Value',
-            ];
-
             $fields->addFieldToTab('Root.Main', $gridField);
         }
 
