@@ -1,5 +1,13 @@
 <?php
 
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\View\ArrayData;
+use SilverStripe\View\Requirements;
+use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
+
 /**
  * @package SilverStripeCharts
  */
