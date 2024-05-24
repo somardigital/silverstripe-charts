@@ -1,5 +1,7 @@
 <?php
 
+namespace flashbackzoo\SilverStripeCharts;
+
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
 use TractorCow\Colorpicker\Forms\ColorField;

@@ -1,5 +1,7 @@
 <?php
 
+namespace flashbackzoo\SilverStripeCharts;
+
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;

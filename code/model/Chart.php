@@ -1,5 +1,7 @@
 <?php
 
+namespace flashbackzoo\SilverStripeCharts;
+
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
