@@ -3,8 +3,11 @@
 namespace flashbackzoo\SilverStripeCharts;
 
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\Forms\GridField\GridFieldExportButton;
+use SilverStripe\Forms\GridField\GridFieldFilterHeader;
 use SilverStripe\Forms\GridField\GridFieldImportButton;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
@@ -58,14 +61,14 @@ class ChartDataset extends DataObject
 
         if ($this->getField('ID')) {
             $config = GridFieldConfig_RecordEditor::create();
-            $config->removeComponentsByType('GridFieldFilterHeader');
-            $config->removeComponentsByType('GridFieldDeleteAction');
+            $config->removeComponentsByType(GridFieldFilterHeader::class);
+            $config->removeComponentsByType(GridFieldDeleteAction::class);
 
             $config->addComponent(new GridFieldImportButton('before'));
             $config->addComponent(new GridFieldExportButton('before'));
             $config->addComponent(new GridFieldSortableRows('SortOrder'));
             $config
-                ->getComponentByType('GridFieldAddNewButton')
+                ->getComponentByType(GridFieldAddNewButton::class)
                 ->setButtonName('Add Data');
 
             $gridField = GridField::create(

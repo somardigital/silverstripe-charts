@@ -6,7 +6,11 @@ use Page;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
+use SilverStripe\Forms\GridField\GridFieldFilterHeader;
+use SilverStripe\Forms\GridField\GridFieldSortableHeader;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
@@ -80,12 +84,12 @@ class Chart extends DataObject
             );
 
             $config = GridFieldConfig_RecordEditor::create();
-            $config->removeComponentsByType('GridFieldFilterHeader');
-            $config->removeComponentsByType('GridFieldSortableHeader');
-            $config->removeComponentsByType('GridFieldDeleteAction');
+            $config->removeComponentsByType(GridFieldFilterHeader::class);
+            $config->removeComponentsByType(GridFieldSortableHeader::class);
+            $config->removeComponentsByType(GridFieldDeleteAction::class);
             $config->addComponent(new GridFieldSortableRows('SortOrder'));
             $config
-                ->getComponentByType('GridFieldAddNewButton')
+                ->getComponentByType(GridFieldAddNewButton::class)
                 ->setButtonName('Add Dataset');
 
             $fields->addFieldToTab(
