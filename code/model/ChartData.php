@@ -21,7 +21,7 @@ class ChartData extends DataObject
     ];
 
     private static $has_one = [
-        'Dataset' => 'ChartDataset',
+        'Dataset' => ChartDataset::class,
     ];
 
     private static $summary_fields = [

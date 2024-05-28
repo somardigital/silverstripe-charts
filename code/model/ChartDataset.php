@@ -25,11 +25,11 @@ class ChartDataset extends DataObject
     ];
 
     private static $has_one = [
-        'Chart' => 'Chart',
+        'Chart' => Chart::class,
     ];
 
     private static $has_many = [
-        'DataRows' => 'ChartData',
+        'DataRows' => ChartData::class,
     ];
 
     /**

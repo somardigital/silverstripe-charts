@@ -23,7 +23,7 @@ class ChartExtension extends DataExtension
     ];
 
     private static $has_many = [
-        'Charts' => 'Chart',
+        'Charts' => Chart::class,
     ];
 
     public function updateCMSFields(FieldList $fields)

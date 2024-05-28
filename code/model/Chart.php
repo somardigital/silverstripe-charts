@@ -2,6 +2,7 @@
 
 namespace flashbackzoo\SilverStripeCharts;
 
+use Page;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
@@ -25,11 +26,11 @@ class Chart extends DataObject
     ];
 
     private static $has_one = [
-        'Page' => 'Page',
+        'Page' => Page::class,
     ];
 
     private static $has_many = [
-        'Datasets' => 'ChartDataset',
+        'Datasets' => ChartDataset::class,
     ];
 
     /**
