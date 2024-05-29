@@ -1,6 +1,6 @@
 {
     "name": "flashbackzoo/silverstripe-charts",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "description": "Display your data using Chart.js",
     "license": "MIT",
     "keywords": ["SilverStripe", "Chart.js", "Graph"],
