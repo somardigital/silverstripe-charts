@@ -64,7 +64,6 @@ class ChartDataset extends DataObject
             $config->removeComponentsByType(GridFieldFilterHeader::class);
             $config->removeComponentsByType(GridFieldDeleteAction::class);
 
-            $config->addComponent(new GridFieldImportButton('before'));
             $config->addComponent(new GridFieldExportButton('before'));
             $config->addComponent(new GridFieldSortableRows('SortOrder'));
             $config
