@@ -6,6 +6,8 @@ Upload CSV files and present the data as [chart.js](http://www.chartjs.org/) cha
 
 ![Example Chart](docs/images/example-chart.png)
 
+NOTE: data import removed instead of upgrading import plugin to be compatible with SS5 / PHP8.2
+
 ## Requirements
 
 * PHP ~5.6
