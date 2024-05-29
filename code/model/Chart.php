@@ -182,6 +182,6 @@ class Chart extends DataObject
 
         $this->extend('updateChartData', $chartData);
 
-        return Convert::raw2xml(json_encode($chartData));
+        return json_encode($chartData);
     }
 }
