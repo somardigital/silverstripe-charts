@@ -56,7 +56,7 @@ class ChartExtension extends DataExtension
             return '';
         }
 
-        Requirements::javascript(CHARTS_DIR . '/static/js/dist/main.js');
+        Requirements::javascript('flashbackzoo/silverstripe-charts:static/js/dist/main.js');
 
         return ArrayData::create([
                 'ChartID' => $chart->getField('ID'),
