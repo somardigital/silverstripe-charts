@@ -2,14 +2,14 @@
 
 namespace flashbackzoo\SilverStripeCharts;
 
+use SilverStripe\Forms\Validation\CompositeValidator;
+use SilverStripe\Forms\Validation\RequiredFieldsValidator;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\Forms\GridField\GridFieldExportButton;
 use SilverStripe\Forms\GridField\GridFieldFilterHeader;
-use SilverStripe\Forms\GridField\GridFieldImportButton;
-use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
 use TractorCow\Colorpicker\Forms\ColorField;
 use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
@@ -21,6 +21,8 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  */
 class ChartDataset extends DataObject
 {
+    private static $table_name = 'flashbackzoo_SilverStripeCharts_ChartDataset';
+
     private static $db = [
         'SortOrder'=>'Int',
         'Label' => 'Varchar(255)',
@@ -64,7 +66,7 @@ class ChartDataset extends DataObject
             $config->removeComponentsByType(GridFieldFilterHeader::class);
             $config->removeComponentsByType(GridFieldDeleteAction::class);
 
-            $config->addComponent(new GridFieldExportButton('before'));
+            $config->addComponent(GridFieldExportButton::create('before'));
             $config->addComponent(new GridFieldSortableRows('SortOrder'));
             $config
                 ->getComponentByType(GridFieldAddNewButton::class)
@@ -83,11 +85,14 @@ class ChartDataset extends DataObject
         return $fields;
     }
 
-    public function getCMSValidator()
+    public function getCMSCompositeValidator(): CompositeValidator
     {
-        return RequiredFields::create(
+        $validator = parent::getCMSCompositeValidator();
+        $validator->addValidator(RequiredFieldsValidator::create(
             'Label'
-        );
+        ));
+
+        return $validator;
     }
 
     public function getTitle()

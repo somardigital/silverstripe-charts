@@ -2,7 +2,8 @@
 
 namespace flashbackzoo\SilverStripeCharts;
 
-use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\Validation\CompositeValidator;
+use SilverStripe\Forms\Validation\RequiredFieldsValidator;
 use SilverStripe\ORM\DataObject;
 use TractorCow\Colorpicker\Forms\ColorField;
 
@@ -13,6 +14,8 @@ use TractorCow\Colorpicker\Forms\ColorField;
  */
 class ChartData extends DataObject
 {
+    private static $table_name = 'flashbackzoo_SilverStripeCharts_ChartData';
+
     private static $db = [
         'SortOrder'=>'Int',
         'Label' => 'Varchar(255)',
@@ -46,12 +49,15 @@ class ChartData extends DataObject
         return $fields;
     }
 
-    public function getCMSValidator()
+    public function getCMSCompositeValidator(): CompositeValidator
     {
-        return RequiredFields::create(
+        $validator = parent::getCMSCompositeValidator();
+        $validator->addValidator(RequiredFieldsValidator::create(
             'Label',
             'Value'
-        );
+        ));
+
+        return $validator;
     }
 
     public function getTitle()

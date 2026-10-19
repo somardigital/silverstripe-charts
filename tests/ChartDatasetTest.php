@@ -1,5 +1,10 @@
 <?php
 
+namespace flashbackzoo\SilverStripeCharts\Tests;
+
+use flashbackzoo\SilverStripeCharts\ChartDataset;
+use SilverStripe\Dev\SapphireTest;
+
 /**
  * @package SilverStripeCharts
  *
@@ -11,11 +16,11 @@ class ChartDatasetTest extends SapphireTest
 
     public function testGetChartLabels()
     {
-        $dataset = $this->objFromFixture('ChartDataset', 'Fruit');
+        $dataset = $this->objFromFixture(ChartDataset::class, 'Fruit');
 
         $labels = $dataset->getChartLabels();
 
-        $this->assertInternalType('array', $labels);
+        $this->assertIsArray($labels);
         $this->assertEquals(4, count($labels));
         $this->assertTrue(in_array('Apple', $labels));
         $this->assertTrue(in_array('Banana', $labels));
@@ -25,7 +30,7 @@ class ChartDatasetTest extends SapphireTest
 
     public function testGetChartDataset()
     {
-        $dataset = $this->objFromFixture('ChartDataset', 'Fruit');
+        $dataset = $this->objFromFixture(ChartDataset::class, 'Fruit');
 
         $data = $dataset->getChartDataset();
 

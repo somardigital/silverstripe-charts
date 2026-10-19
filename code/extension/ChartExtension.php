@@ -2,18 +2,19 @@
 
 namespace flashbackzoo\SilverStripeCharts;
 
+use SilverStripe\Core\Extension;
+use SilverStripe\Model\ArrayData;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-use SilverStripe\ORM\DataExtension;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\View\Requirements;
 use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 /**
  * @package SilverStripeCharts
  */
-class ChartExtension extends DataExtension
+class ChartExtension extends Extension
 {
     /**
      * @var array
@@ -29,7 +30,7 @@ class ChartExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
         $config = GridFieldConfig_RecordEditor::create();
-        $config->removeComponentsByType('GridFieldDeleteAction');
+        $config->removeComponentsByType(GridFieldDeleteAction::class);
         $config->addComponent(new GridFieldSortableRows('SortOrder'));
 
         $fields->addFieldsToTab(

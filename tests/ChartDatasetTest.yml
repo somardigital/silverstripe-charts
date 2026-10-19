@@ -1,4 +1,4 @@
-ChartData:
+flashbackzoo\SilverStripeCharts\ChartData:
   Apple:
     SortOrder: 0
     Label: 'Apple'
@@ -17,9 +17,9 @@ ChartData:
     Label: 'Grapefruit'
     Value: 1
 
-ChartDataset:
+flashbackzoo\SilverStripeCharts\ChartDataset:
   Fruit:
     SortOrder: 0
     Label: 'Units'
     Color: '2196f3'
-    DataRows: =>ChartData.Apple, =>ChartData.Banana, =>ChartData.Cherry, =>ChartData.Grapefruit
+    DataRows: =>flashbackzoo\SilverStripeCharts\ChartData.Apple, =>flashbackzoo\SilverStripeCharts\ChartData.Banana, =>flashbackzoo\SilverStripeCharts\ChartData.Cherry, =>flashbackzoo\SilverStripeCharts\ChartData.Grapefruit

@@ -1,5 +1,10 @@
 <?php
 
+namespace flashbackzoo\SilverStripeCharts\Tests;
+
+use flashbackzoo\SilverStripeCharts\Chart;
+use SilverStripe\Dev\SapphireTest;
+
 /**
  * @package SilverStripeCharts
  *
@@ -11,8 +16,8 @@ class ChartTest extends SapphireTest
 
     public function testGetChartData()
     {
-        $chart = $this->objFromFixture('Chart', 'Bar');
+        $chart = $this->objFromFixture(Chart::class, 'Bar');
 
-        $this->assertInternalType('string', $chart->getChartData());
+        $this->assertIsString($chart->getChartData());
     }
 }

@@ -2,8 +2,9 @@
 
 namespace flashbackzoo\SilverStripeCharts;
 
+use SilverStripe\Forms\Validation\CompositeValidator;
+use SilverStripe\Forms\Validation\RequiredFieldsValidator;
 use Page;
-use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
@@ -12,7 +13,6 @@ use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\Forms\GridField\GridFieldFilterHeader;
 use SilverStripe\Forms\GridField\GridFieldSortableHeader;
 use SilverStripe\Forms\ReadonlyField;
-use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
 use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
@@ -21,6 +21,8 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  */
 class Chart extends DataObject
 {
+    private static $table_name = 'flashbackzoo_SilverStripeCharts_Chart';
+
     private static $description = 'Enter your chart data';
 
     private static $db = [
@@ -106,12 +108,15 @@ class Chart extends DataObject
         return $fields;
     }
 
-    public function getCMSValidator()
+    public function getCMSCompositeValidator(): CompositeValidator
     {
-        return RequiredFields::create(
+        $validator = parent::getCMSCompositeValidator();
+        $validator->addValidator(RequiredFieldsValidator::create(
             'Title',
             'ChartType'
-        );
+        ));
+
+        return $validator;
     }
 
     protected function onAfterDelete()
@@ -150,35 +155,27 @@ class Chart extends DataObject
         }
 
         // Set some default options.
-        switch ($chartData['type']) {
-            case 'bar':
-                $chartData['options'] = [
-                    'responsive' => true,
-                    'scales' => [
-                        'yAxes' => [
-                            [
-                                'ticks' => [
-                                    'beginAtZero' => true,
-                                    'min' => 0,
-                                ],
+        $chartData['options'] = match ($chartData['type']) {
+            'bar' => [
+                'responsive' => true,
+                'scales' => [
+                    'yAxes' => [
+                        [
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'min' => 0,
                             ],
                         ],
                     ],
-                ];
-                break;
-
-            case 'pie':
-                $chartData['options'] = [
-                    'responsive' => true,
-                ];
-                break;
-
-            default:
-                $chartData['options'] = [
-                    'responsive' => true,
-                ];
-                break;
-        }
+                ],
+            ],
+            'pie' => [
+                'responsive' => true,
+            ],
+            default => [
+                'responsive' => true,
+            ],
+        };
 
         $this->extend('updateChartData', $chartData);
 
